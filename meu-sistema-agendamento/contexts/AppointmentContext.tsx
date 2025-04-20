@@ -1,7 +1,7 @@
 // Criando o contexto para gerenciar os agendamentos 
 
 import { Appointment, Client } from '@/types';
-import React, {createContext, ReactNode, useState } from 'react';
+import React, {createContext, ReactNode, useContext, useState } from 'react';
 
 
 interface AppointentContextType {
@@ -63,10 +63,16 @@ export const AppointmentProvider = ({children}: {children: ReactNode }) => {
             addClient,
             getClientById
         }}
-
         >
             {children}
         </AppointmentContext.Provider>
     );
+}
 
+export const useAppointments = () => {
+    const context = useContext(AppointmentContext);
+    if (context === undefined) {
+        throw new Error ('useAppointments must me be used within an AppointmentProvider')
+    }
+    return context;
 }

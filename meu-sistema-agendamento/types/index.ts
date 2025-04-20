@@ -10,7 +10,7 @@ export interface Client {
 
 export interface Appointment {
     id: string;
-    clientIDd: string;
+    clientId: string;
     date: Date;
     duration:number; // em minutos
     service: string;
